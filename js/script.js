@@ -1,55 +1,84 @@
-let jsonPassage, jsonAnswer, count;
-const maxNumber = location.href.split("?")[1];
-const passageBox = document.querySelector(".passage-box");
-const submitAnswer = document.querySelector(".submit-answer");
+let jsonPassage, jsonAnswer;
+let count = 0;
 const answer = document.querySelector(".answer");
-const answerInputBox = document.querySelector(".answer-input-box");
+const nextBtn = document.querySelector(".next-btn");
+// const maxNumber = Number(location.href.split("?")[1]);
+const maxNumber = 3;
+const passageBox = document.querySelector(".passage-box");
+const resultCase = document.querySelector(".result-case");
+const testScoreBtn = document.querySelector(".test-score-btn");
 
 document.querySelector(".img-case").addEventListener("click", () => {
   location.replace("../index.html");
 });
 
-function randNum(max) {
-  count++;
-  return Math.floor(Math.random() * (max - 1)) + 1;
+function generateRandomNumber() {
+  return Math.floor(Math.random() * 588);
+}
+
+function createElement(className, innerText) {
+  const result = document.createElement("span");
+  result.setAttribute("class", className);
+  result.innerText = innerText;
+  return result;
 }
 
 function printTest() {
+  count++;
+  passageBox.replaceChildren();
   fetch("../json/question.json")
     .then((response) => response.json())
     .then((json) => {
       const data = json.QL;
-      const idx = randNum(maxNumber);
-      jsonPassage = data[idx].passage;
-      jsonAnswer = data[idx].answer;
+      const index = generateRandomNumber();
+      // const index = ;
+      jsonPassage = data[index].passage;
+      jsonAnswer = data[index].answer;
 
-      const passage = document.createElement("span");
-      passage.classList.add("passage");
-      passageBox.innerHTML = jsonPassage;
+      passageBox.append(
+        createElement("number", `no.${index + 1}`),
+        createElement("passage", jsonPassage)
+      );
     });
 }
+
 printTest();
 
 function printAnswer(text) {
-  answerInputBox.classList.remove("printPassage", "result");
+  resultCase.classList.remove("printPassage", "result");
 
-  const printPassage = document.createElement("span");
-  printPassage.innerHTML = jsonAnswer;
-  printPassage.classList.add("printPassage");
-
-  const result = document.createElement("span");
-  result.innerHTML = text;
-  result.classList.add("result");
-
-  answerInputBox.prepend(printPassage);
-  answerInputBox.prepend(result);
+  resultCase.append(createElement("result", text));
+  resultCase.append(createElement("printPassage", jsonAnswer));
 }
 
 function checkAnswer(text) {
-  answer.classList.add("dn");
+  answer.classList.toggle("dn");
   printAnswer(text === jsonAnswer ? "정답!" : "오답!");
+  if (count == maxNumber) {
+    nextBtn.classList.toggle("dn");
+    testScoreBtn.classList.toggle("dn");
+  }
 }
 
-submitAnswer.addEventListener("click", () => {
-  checkAnswer();
+let nextBtnClickCount = 0;
+
+nextBtn.addEventListener("click", () => {
+  nextBtnClickCount++;
+  switch (nextBtnClickCount) {
+    case 1:
+      checkAnswer(answer.value);
+      break;
+    case 2:
+      printTest();
+      answer.classList.toggle("dn");
+      resultCase.replaceChildren();
+      nextBtnClickCount = 0;
+      console.log(count);
+      console.log(maxNumber);
+
+      break;
+    default:
+      alert("오류가 발생하였습니다, 새로고침 후 재시도하세요.");
+      break;
+  }
 });
