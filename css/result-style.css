@@ -53,6 +53,7 @@
     flex-direction: column;
     color: white;
     position: relative;
+    font-family: 'JoseonPalace';
 }
 
 header {
@@ -88,38 +89,39 @@ section {
     width: 100%;
     height: calc(100% - 56px);
     background-color: var(--backColor);
-    padding: 0px 32px;
-}
-
-.result-zone {
-    width: 70vw;
-    height: 65vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    position: relative;
 }
 
-.passage-box1 {
-    width: 50%;
-    height: 30%;
-    background-color: cadetblue;
+.asdqwe {
+    height: calc((35vh - 56px) / 2);
+}
+
+.print-span {
+    width: 35vw;
     min-width: 400px;
+    height: calc(((65vh * 0.1) * 3 + ((35% - 56px) / 2)));
+    font-size: 240px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .correct-count-case {
-    width: 50%;
-    height: 10%;
-    background-color: var(--resultColor);
+    width: 100vw;
     min-width: 400px;
-    font-family: 'JoseonPalace';
+    height: 6.5vh;
+    background-color: var(--resultColor);
+    margin: 2.5vh 0px;
 }
 
 .correct-rate-case {
-    width: 50%;
-    height: 50%;
-    background-color: var(--resultColor);
+    width: 35vw;
     min-width: 400px;
+    height: 32.5vh;
+    background-color: var(--resultColor);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -131,11 +133,7 @@ section {
     font-size: 112px;
 }
 
-.how-correct-rate {
-    font-family: 'JoseonPalace';
-}
-
-.button {
+.go-home-button {
     width: 16%;
     min-width: 48px;
 }

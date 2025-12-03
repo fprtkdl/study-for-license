@@ -90,11 +90,9 @@ nextBtn.addEventListener("click", () => {
       resultCase.replaceChildren();
       nextBtnClickCount = 0;
       answer.value = null;
-
-      console.log(`현재 풀이한 문제의 수 : ${count}`);
-      console.log(`현재 정답을 맞힌 문제의 수${correctAnswer}`);
-      console.log(`풀기로한 문제의 수 : ${maxNumber}`);
-
+      // console.log(`현재 풀이한 문제의 수 : ${count}`);
+      // console.log(`현재 정답을 맞힌 문제의 수${correctAnswer}`);
+      // console.log(`풀기로한 문제의 수 : ${maxNumber}`);
       break;
     default:
       alert("오류가 발생하였습니다, 새로고침 후 재시도하세요.");
