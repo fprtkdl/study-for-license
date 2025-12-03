@@ -1,6 +1,13 @@
 const resultSet = JSON.parse(localStorage.getItem("resultSet"));
 localStorage.clear();
 
+document.querySelector(".img-case").addEventListener("click", () => {
+  location.replace("../index.html");
+});
+document.querySelector(".go-home-button").addEventListener("click", () => {
+  location.replace("../index.html");
+});
+
 const printSpan = document.querySelector(".print-span");
 const correctAnswerCase = document.querySelector(".correct-count-case");
 const correctRateCase = document.querySelector(".correct-rate-case");
@@ -9,13 +16,6 @@ const correctAnswer = resultSet["correctAnswer"];
 const maxNumber = resultSet["maxNumber"];
 const correctRateNumber = (correctAnswer / maxNumber) * 100;
 const checkState = correctAnswer >= maxNumber * 0.6 ? "기합" : "기열";
-
-document.querySelector(".img-case").addEventListener("click", () => {
-  location.replace("../index.html");
-});
-document.querySelector(".go-home-button").addEventListener("click", () => {
-  location.replace("../index.html");
-});
 
 function createElement(className, innerText) {
   const result = document.createElement("span");
