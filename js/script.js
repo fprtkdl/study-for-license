@@ -1,4 +1,4 @@
-let jsonPassage, jsonAnswer;
+let jsonPassage, jsonAnswer, printJsonAnswer;
 let count = 0;
 let correctAnswer = 0;
 const answer = document.querySelector(".answer");
@@ -42,10 +42,9 @@ function printTest() {
       const data = json.QL;
       const index = generateRandomNumber();
       // const index = ; 특정 문제 출력용
-      answer.blur();
-      nextBtn.blur();
       jsonPassage = data[index].passage;
-      jsonAnswer = data[index].answer.replace(/ /g, "").toLowerCase();
+      printJsonAnswer = data[index].answer;
+      jsonAnswer = printJsonAnswer.replace(/ /g, "").toLowerCase();
 
       passageBox.append(
         createElement("number fwb", `no.${index + 1}`),
@@ -59,10 +58,10 @@ printTest();
 
 function checkAnswer(text) {
   answer.classList.toggle("dn");
-  printAnswer(text === jsonAnswer);
+  printAnswer(text === jsonAnswer, printJsonAnswer);
 }
 
-function printAnswer(bool) {
+function printAnswer(bool, print) {
   resultCase.classList.remove("printPassage", "result");
 
   const result = bool ? "정답!" : "오답!";
@@ -71,7 +70,7 @@ function printAnswer(bool) {
 
   resultCase.append(
     createElement("result fwb", result),
-    createElement("printPassage fwb", jsonAnswer)
+    createElement("printPassage fwb", print)
   );
   if (count == maxNumber) {
     nextBtn.classList.toggle("dn");
@@ -106,11 +105,6 @@ function triggerNext() {
   next();
 }
 
-nextBtn.addEventListener("click", triggerNext);
-
-window.addEventListener("keyup", (e) => {
-  if (e.code === "Enter") {
-    e.preventDefault();
-    triggerNext();
-  }
+nextBtn.addEventListener("click", () => {
+  triggerNext();
 });
