@@ -1,0 +1,86 @@
+:root {
+    --backColor: #313492;
+    --btnColor: #6f2cdb;
+    --resultColor: #272958;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.dn {
+    display: none;
+}
+
+.dfcc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ma {
+    margin: auto;
+}
+
+.fwb {
+    font-weight: bold;
+}
+
+.btn-base {
+    height: 48px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--btnColor);
+    cursor: pointer;
+}
+
+@font-face {
+    font-family: 'JoseonPalace';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGs.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    position: relative;
+    font-family: 'JoseonPalace';
+}
+
+header {
+    width: 100%;
+    height: 56px;
+    background-color: white;
+    padding: 0px 32px;
+    display: flex;
+    align-items: center;
+}
+
+.img-case {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.img-case img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+@media (max-width: 1612px) {
+    header .img-case {
+        max-width: 1050px;
+    }
+}

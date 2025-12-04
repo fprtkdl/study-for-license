@@ -77,7 +77,7 @@ function printAnswer(bool) {
 
 let nextBtnClickCount = 0;
 
-nextBtn.addEventListener("click", () => {
+function next() {
   nextBtnClickCount++;
   switch (nextBtnClickCount) {
     case 1:
@@ -97,5 +97,15 @@ nextBtn.addEventListener("click", () => {
     default:
       alert("오류가 발생하였습니다, 새로고침 후 재시도하세요.");
       break;
+  }
+}
+nextBtn.addEventListener("click", () => {
+  next();
+});
+window.addEventListener("keyup", (e) => {
+  if (e.code === "Enter") {
+    next();
+  } else if (e.code === "Space") {
+    next();
   }
 });
