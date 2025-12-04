@@ -42,6 +42,8 @@ function printTest() {
       const data = json.QL;
       const index = generateRandomNumber();
       // const index = ; 특정 문제 출력용
+      answer.blur();
+      nextBtn.blur();
       jsonPassage = data[index].passage;
       jsonAnswer = data[index].answer.replace(/ /g, "").toLowerCase();
 
@@ -49,6 +51,7 @@ function printTest() {
         createElement("number fwb", `no.${index + 1}`),
         createElement("passage", jsonPassage)
       );
+      answer.focus();
     });
 }
 
@@ -63,6 +66,7 @@ function printAnswer(bool) {
   resultCase.classList.remove("printPassage", "result");
 
   const result = bool ? "정답!" : "오답!";
+
   if (bool) correctAnswer++;
 
   resultCase.append(
@@ -79,33 +83,34 @@ let nextBtnClickCount = 0;
 
 function next() {
   nextBtnClickCount++;
-  switch (nextBtnClickCount) {
-    case 1:
-      count++;
-      checkAnswer(answer.value.replace(/ /g, "").toLowerCase());
-      break;
-    case 2:
-      printTest();
-      answer.classList.toggle("dn");
-      resultCase.replaceChildren();
-      nextBtnClickCount = 0;
-      answer.value = null;
-      // console.log(`현재 풀이한 문제의 수 : ${count}`);
-      // console.log(`현재 정답을 맞힌 문제의 수${correctAnswer}`);
-      // console.log(`풀기로한 문제의 수 : ${maxNumber}`);
-      break;
-    default:
-      alert("오류가 발생하였습니다, 새로고침 후 재시도하세요.");
-      break;
+
+  if (nextBtnClickCount === 1) {
+    count++;
+    checkAnswer(answer.value.replace(/ /g, "").toLowerCase());
+  } else if (nextBtnClickCount === 2) {
+    printTest();
+    answer.classList.toggle("dn");
+    resultCase.replaceChildren();
+    nextBtnClickCount = 0;
+    answer.value = null;
+
+    console.log(`현재 풀이한 문제의 수 : ${count}`);
+    console.log(`현재 정답을 맞힌 문제의 수${correctAnswer}`);
+    console.log(`풀기로한 문제의 수 : ${maxNumber}`);
+  } else {
+    alert("오류가 발생하였습니다, 새로고침 후 재시도하세요.");
   }
 }
-nextBtn.addEventListener("click", () => {
+
+function triggerNext() {
   next();
-});
+}
+
+nextBtn.addEventListener("click", triggerNext);
+
 window.addEventListener("keyup", (e) => {
   if (e.code === "Enter") {
-    next();
-  } else if (e.code === "Space") {
-    next();
+    e.preventDefault();
+    triggerNext();
   }
 });
