@@ -37,12 +37,12 @@ const stateTextArray = {
 
 function createStateText(state) {
   const info = stateTextArray[state];
-  printSpan.replaceChildren(
+  printSpan.prepend(
     createElement("print-span-child-1", info.stateText[0]),
     createElement("print-span-child-2", info.stateText[1])
   );
 
-  correctRateCase.replaceChildren(
+  correctRateCase.prepend(
     createElement("print-result dfcc", `${correctAnswer}/${maxNumber}`),
     createElement("how-correct-rate", info.text)
   );

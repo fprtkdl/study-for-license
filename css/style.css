@@ -1,9 +1,22 @@
 section {
     width: 100%;
-    height: calc(100% - 56px);
+    min-width: 400px;
+    height: calc(100% - 6.65vh);
+    min-height: 350px;
     background-color: var(--backColor);
-    padding: 0px 32px;
+    padding: 0 3.8vh;
 }
+
+/*0 4px === 0.475vh */
+/*1 8px === 0.95vh */
+/*2 16px === 1.9vh */
+/*3 24px === 2.85vh */
+/*4 32px === 3.8vh */
+/*5 40px === 4.75vh */
+/*6 48px === 5.7vh */
+/*7 56px === 6.65vh */
+/*8 64px === 7.6vh */
+/*12 96px === 11.4vh */
 
 .quiz-zone {
     width: 70vw;
@@ -14,24 +27,25 @@ section {
 }
 
 .passage-box {
-    width: 35%;
+    width: 50%;
     height: 60%;
     background-color: cadetblue;
     min-width: 400px;
-    padding: 0px 16px;
+    padding: 0 1.9vh;
     display: flex;
     flex-direction: column;
 }
 
 .passage-box .number {
-    font-size: 24px;
-    padding: 8px 0px;
+    font-size: 2.85vh;
+    padding: 0.95vh 0;
 }
 
 .drop-hope {
     width: 100vw;
-    height: calc(30% - 48px);
-    font-size: 48px;
+    height: calc(30% - 5.7vh);
+    min-height: calc(30% - 48px);
+    font-size: 5.7vh;
 }
 
 .drop-hope-img {
@@ -44,46 +58,54 @@ section {
 .answer-input-box {
     width: 50%;
     min-width: 400px;
-    height: 48px;
+    height: 5.7vh;
+    min-height: 48px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+.answer {
+    width: 90%;
+    height: 5.7vh;
+    min-height: 48px;
+    padding: 0 1.9vh;
+    border-radius: 0.475vh;
+    border: none;
+    outline: none;
+    color: black;
+}
+
+.next-btn {
+    width: 5.7vh;
+    min-width: 48px;
+    position: relative;
+}
+
+.test-score-btn {
+    width: 11vh;
+    min-width: 96px;
+}
+
 .result-case {
     width: 100%;
-    height: calc(30% - 48px);
+    height: calc(30% - 5.7vh);
+    min-height: calc(30% - 48px);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .printPassage {
-    font-size: 32px;
-}
-
-.answer {
-    width: calc(100% - 48px - 16px);
-    height: 48px;
-    margin-right: 24px;
-    padding: 0px 16px;
-    border-radius: 4px;
-    border: none;
-    outline: none;
-    color: black;
+    font-size: 3.8vh;
 }
 
 .result {
-    margin: 2.5vh 0px;
+    margin: 2.5vh 0;
 }
 
 .passage {
     font-size: 3vh;
-}
-
-.next-btn {
-    width: 48px;
-    position: relative;
 }
 
 .next-btn img {
@@ -92,10 +114,6 @@ section {
     top: 50%;
     left: 50%;
     transform: rotate(180deg) translate(45%, 50%);
-}
-
-.test-score-btn {
-    width: 96px;
 }
 
 .button {

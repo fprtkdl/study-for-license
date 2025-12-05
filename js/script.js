@@ -42,6 +42,7 @@ function printTest() {
       const data = json.QL;
       const index = generateRandomNumber();
       // const index = ; 특정 문제 출력용
+
       jsonPassage = data[index].passage;
       printJsonAnswer = data[index].answer;
       jsonAnswer = printJsonAnswer.replace(/ /g, "").toLowerCase();
@@ -50,31 +51,38 @@ function printTest() {
         createElement("number fwb", `no.${index + 1}`),
         createElement("passage", jsonPassage)
       );
+
       answer.focus();
     });
 }
 
 printTest();
 
-function checkAnswer(text) {
+function checkAnswer() {
+  count++;
   answer.classList.toggle("dn");
-  printAnswer(text === jsonAnswer, printJsonAnswer);
+
+  const isAnswer = answer.value.replace(/ /g, "").toLowerCase();
+  const isCorrect = isAnswer === jsonAnswer;
+  if (isCorrect) correctAnswer++;
+
+  printResult(isCorrect, printJsonAnswer);
 }
 
-function printAnswer(bool, print) {
+function printResult(isCorrect, printJsonAnswer) {
   resultCase.classList.remove("printPassage", "result");
+  resultCase.replaceChildren();
 
-  const result = bool ? "정답!" : "오답!";
-
-  if (bool) correctAnswer++;
+  const result = isCorrect ? "정답!" : "오답!";
 
   resultCase.append(
     createElement("result fwb", result),
-    createElement("printPassage fwb", print)
+    createElement("printPassage fwb", printJsonAnswer)
   );
+
   if (count == maxNumber) {
-    nextBtn.classList.toggle("dn");
-    testScoreBtn.classList.toggle("dn");
+    nextBtn.classList.add("dn");
+    testScoreBtn.classList.remove("dn");
   }
 }
 
@@ -84,20 +92,17 @@ function next() {
   nextBtnClickCount++;
 
   if (nextBtnClickCount === 1) {
-    count++;
-    checkAnswer(answer.value.replace(/ /g, "").toLowerCase());
+    checkAnswer();
   } else if (nextBtnClickCount === 2) {
     printTest();
-    answer.classList.toggle("dn");
+    answer.classList.remove("dn");
+    answer.value = "";
     resultCase.replaceChildren();
     nextBtnClickCount = 0;
-    answer.value = null;
 
     console.log(`현재 풀이한 문제의 수 : ${count}`);
     console.log(`현재 정답을 맞힌 문제의 수${correctAnswer}`);
     console.log(`풀기로한 문제의 수 : ${maxNumber}`);
-  } else {
-    alert("오류가 발생하였습니다, 새로고침 후 재시도하세요.");
   }
 }
 
@@ -106,5 +111,6 @@ function triggerNext() {
 }
 
 nextBtn.addEventListener("click", () => {
+  nextBtn.classList.toggle("ma");
   triggerNext();
 });
