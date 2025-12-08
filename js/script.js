@@ -33,7 +33,7 @@ const imgCase = document.querySelector(".img-case");
 /**실행 흐름 시작: window.onload */
 /** json 불러오기 및 첫 문제 출력 */
 window.addEventListener("load", () => {
-  fetch("../json/fullPower.json")
+  fetch("../json/question.json")
     .then((response) => response.json())
     .then((json) => {
       quectionList = json.QL;
@@ -85,9 +85,7 @@ function nextButtonClickEvent() {
 
   if (!isNext) {
     printResult();
-    console.log("성공");
   } else if (isNext) {
-    console.log("실패");
     printTest();
     answer.value = "";
     answer.classList.remove("dn");
@@ -112,10 +110,14 @@ function printTest() {
     createElement("passage", correctPassage)
   );
 
-  answer.focus();
+  nextButton.blur();
+
+  setTimeout(() => {
+    answer.focus();
+  }, 0);
 }
 
-/** 문제 채점 후 화면에 풀력 */
+/** 문제 채점 후 화면에 출력 */
 function printResult() {
   countSolveQuestion++;
   answer.classList.toggle("dn");
