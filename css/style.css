@@ -102,6 +102,7 @@ section {
 
 .result {
     margin: 2.5vh 0;
+    font-size: 1.8vh;
 }
 
 .passage {
@@ -118,5 +119,6 @@ section {
 
 .button {
     width: 20%;
+    font-size: 1.5vh;
     min-width: 48px;
 }

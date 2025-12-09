@@ -33,7 +33,7 @@ const imgCase = document.querySelector(".img-case");
 /**실행 흐름 시작: window.onload */
 /** json 불러오기 및 첫 문제 출력 */
 window.addEventListener("load", () => {
-  fetch("../json/question.json")
+  fetch("../json/fullPower.json")
     .then((response) => response.json())
     .then((json) => {
       quectionList = json.QL;

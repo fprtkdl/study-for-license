@@ -12,10 +12,11 @@ const printSpan = document.querySelector(".print-span");
 const correctAnswerCase = document.querySelector(".correct-count-case");
 const correctRateCase = document.querySelector(".correct-rate-case");
 
-const correctAnswer = resultSet["correctAnswer"];
-const maxNumber = resultSet["maxNumber"];
-const correctRateNumber = (correctAnswer / maxNumber) * 100;
-const checkState = correctAnswer >= maxNumber * 0.6 ? "기합" : "기열";
+const countCorrectAnswer = resultSet["countCorrectAnswer"];
+const numberOfSolveQuestion = resultSet["numberOfSolveQuestion"];
+const correctRateNumber = (countCorrectAnswer / numberOfSolveQuestion) * 100;
+const checkState =
+  countCorrectAnswer >= numberOfSolveQuestion * 0.6 ? "기합" : "기열";
 
 function createElement(className, innerText) {
   const result = document.createElement("span");
@@ -43,7 +44,10 @@ function createStateText(state) {
   );
 
   correctRateCase.prepend(
-    createElement("print-result dfcc", `${correctAnswer}/${maxNumber}`),
+    createElement(
+      "print-result dfcc",
+      `${countCorrectAnswer}/${numberOfSolveQuestion}`
+    ),
     createElement("how-correct-rate", info.text)
   );
 }
@@ -53,7 +57,7 @@ function createCheckState(state) {
   correctAnswerCase.replaceChildren(
     createElement(
       "how-correct-answer",
-      `총 ${maxNumber} 문제 중 <b>${correctAnswer}개</b>의 정답을 맞춰 ${correctRateNumber}%의 정답률을 기록하였군..`
+      `총 ${numberOfSolveQuestion} 문제 중 <b>${countCorrectAnswer}개</b>의 정답을 맞춰 ${correctRateNumber}%의 정답률을 기록하였군..`
     )
   );
 }
