@@ -17,14 +17,6 @@ const numberOfSolveQuestion = resultSet["numberOfSolveQuestion"];
 const correctRateNumber = (countCorrectAnswer / numberOfSolveQuestion) * 100;
 const checkState =
   countCorrectAnswer >= numberOfSolveQuestion * 0.6 ? "기합" : "기열";
-
-function createElement(className, innerText) {
-  const result = document.createElement("span");
-  result.setAttribute("class", className);
-  result.innerHTML = innerText;
-  return result;
-}
-
 const stateTextArray = {
   기합: {
     stateText: ["기", "합"],
@@ -35,6 +27,13 @@ const stateTextArray = {
     text: "이런 기열찐빠해병지능이라니... 오도짜세 아쎄이는 당장 재입대를 할 수 있도록!!!",
   },
 };
+
+function createElement(className, innerText) {
+  const result = document.createElement("span");
+  result.setAttribute("class", className);
+  result.innerHTML = innerText;
+  return result;
+}
 
 function createStateText(state) {
   const info = stateTextArray[state];

@@ -4,6 +4,8 @@ let quectionList;
 let quectionListLength = 0;
 /** @type {number} json 데이터 추출용 난수 */
 let randomIndex = 0;
+/** @type {number} json 데이터 추출용 난수 중복 모음 */
+let randomIndexDuplication = [];
 
 /** @type {String} 문제 지문 */
 let correctPassage;
@@ -91,16 +93,26 @@ function nextButtonClickEvent() {
     answer.classList.remove("dn");
     resultCase.replaceChildren();
 
-    console.log(`현재 풀이한 문제의 수 : ${countSolveQuestion}`);
-    console.log(`현재 정답을 맞힌 문제의 수 : ${countCorrectAnswer}`);
-    console.log(`풀기로한 문제의 수 : ${numberOfSolveQuestion}`);
+    // console.log(`현재 풀이한 문제의 수 : ${countSolveQuestion}`);
+    // console.log(`현재 정답을 맞힌 문제의 수 : ${countCorrectAnswer}`);
+    // console.log(`풀기로한 문제의 수 : ${numberOfSolveQuestion}`);
   }
+}
+
+function indexCheck(index) {
+  if (randomIndexDuplication.includes(index)) {
+    return indexCheck(Math.floor(Math.random() * quectionListLength));
+  }
+
+  randomIndexDuplication.push(index);
+  return index;
 }
 
 /** 문제 생성 및 화면에 출력 */
 function printTest() {
   passageBox.replaceChildren();
-  randomIndex = Math.floor(Math.random() * quectionListLength);
+
+  randomIndex = indexCheck(Math.floor(Math.random() * quectionListLength));
 
   correctPassage = quectionList[randomIndex].passage;
   correctAnswer = quectionList[randomIndex].answer;
